@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="Layer_1"
+   data-name="Layer 1"
+   viewBox="0 0 200 200"
+   version="1.1"
+   sodipodi:docname="acpaas-logo-small.svg"
+   width="200"
+   height="200"
+   inkscape:version="1.0.1 (c497b03c, 2020-09-10)">
+  <metadata
+     id="metadata33">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Artboard 1</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1376"
+     inkscape:window-height="902"
+     id="namedview31"
+     showgrid="false"
+     inkscape:zoom="1.9844021"
+     inkscape:cx="158.45023"
+     inkscape:cy="69.76"
+     inkscape:window-x="0"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="Layer_1" />
+  <defs
+     id="defs12">
+    <style
+       id="style10">.cls-1{fill:#00b3c4;}.cls-2{fill:#ffffff;}</style>
+  </defs>
+  <title
+     id="title14">Artboard 1</title>
+  <path
+     class="cls-1"
+     d="m 179.54733,127 -20.8,-36 a 4.63,4.63 0 0 0 -4,-2.32 h -18.29 l 9.09,-15.76 a 4.65,4.65 0 0 0 0,-4.62 l -20.8,-36 a 4.65,4.65 0 0 0 -4,-2.31 H 79.077328 a 4.64,4.64 0 0 0 -4,2.31 l -20.86,36 a 4.61,4.61 0 0 0 0,4.64 l 9.16,15.81 h -18.1 a 4.64,4.64 0 0 0 -4,2.31 l -20.86,36 a 4.65,4.65 0 0 0 0,4.65 l 21,36 a 4.65,4.65 0 0 0 4,2.3 h 41.58 a 4.66,4.66 0 0 0 4,-2.32 l 9,-15.58 9.230002,15.62 a 4.63,4.63 0 0 0 4,2.27 h 41.59 a 4.66,4.66 0 0 0 4,-2.31 l 20.78,-36 a 4.66,4.66 0 0 0 -0.05,-4.69 z M 79.737328,35.75 h 37.000002 l -18.450002,32 h -37.08 z m -52.31,96.48 h 37.07 l 18.47,32 h -36.93 z m 75.750002,13.93 a 3.79,3.79 0 0 0 -3.240002,-1.85 v 0 a 3.77,3.77 0 0 0 -3.23,1.88 l -8.72,15.11 -18.47,-32 16.85,-29.19 a 8.71,8.71 0 1 0 -5,-2.89 l -16.87,29.23 h -37.08 l 18.53,-32 h 20.93 a 3.75,3.75 0 0 0 3.25,-5.64 l -8.91,-15.29 h 37.07 l 16.870002,29.23 a 8.7,8.7 0 1 0 5,-2.89 l -16.87,-29.23 18.46,-32 18.46,32 -10.5,18.2 a 3.76,3.76 0 0 0 3.26,5.64 h 17.78 l -18.45,32 H 98.407328 a 8.72,8.72 0 1 0 0,5.77 h 33.890002 l 18.46,32 h -36.88 z m 52.58,15.13 -18.46,-32 18.45,-32 18.47,32 z"
+     id="path16" />
+</svg>

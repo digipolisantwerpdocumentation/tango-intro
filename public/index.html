@@ -1,0 +1,891 @@
+<!doctype html>
+
+<!--
+    Deze presentatie is gebaseerd op impress.js.
+
+    https://github.com/impress/impress.js/
+
+    Waar zinvol zijn de comments overgenomen uit de impress.js demopresentatie.
+-->
+
+<!--
+
+    Welcome to the light side of the source, young padawan.
+
+    One step closer to learn something interesting you are...
+
+                               ____                  
+                            _.' :  `._               
+                        .-.'`.  ;   .'`.-.           
+               __      / : ___\ ;  /___ ; \      __  
+             ,'_ ""=-.:__;".-.";: :".-.":__;.-="" _`,
+             :' `.t""=-.. '<@.`;_  ',@:` ..-=""j.' `;
+                  `:-.._J '-.-'L__ `-.-' L_..-;'     
+                    "-.__ ;  .-"  "-.  : __.-"       
+                        L ' /.======.\ ' J           
+                         "-.   "__"   .-"            
+                        __.l"-:_JL_;-";.__           
+                     .-j/'.;  ;""""  / .'\"-.        
+                   .' /:`. "-.:     .-" .';  `.      
+                .-"  / ;  "-. "-..-" .-"  :    "-.   
+             .+"-.  : :      "-.__.-"      ;-._   \  
+             ; \  `.; ;                    : : "+. ; 
+             :  ;   ; ;                    : ;  : \: 
+             ;  :   ; :                    ;:   ;  : 
+            : \  ;  :  ;                  : ;  /  :: 
+            ;  ; :   ; :                  ;   :   ;: 
+            :  :  ;  :  ;                : :  ;  : ; 
+            ;\    :   ; :                ; ;     ; ; 
+            : `."-;   :  ;              :  ;    /  ; 
+             ;    -:   ; :              ;  : .-"   : 
+             :\     \  :  ;            : \.-"      : 
+              ;`.    \  ; :            ;.'_..-=  / ; 
+              :  "-.  "-:  ;          :/."      .'  :
+               \         \ :          ;/  __        :
+                \       .-`.\        /t-""  ":-+.   :
+                 `.  .-"    `l    __/ /`. :  ; ; \  ;
+                   \   .-" .-"-.-"  .' .'j \  /   ;/ 
+                    \ / .-"   /.     .'.' ;_:'    ;  
+                     :-""-.`./-.'     /    `.___.'   
+                           \ `t  ._  /               
+                            "-.t-._:'                
+
+-->
+
+<!--
+    
+    So you'd like to know how to use impress.js?
+    
+    You've made the first, very important step - you're reading the source code.
+    And that's how impress.js presentations are built - with HTML and CSS code.
+    
+    Believe me, you need quite decent HTML and CSS skills to be able to use impress.js effectively.
+    More importantly, you need to be a designer. There are no default styles or layouts for impress.js presentations.
+    
+    You need to design and build it by hand.
+    
+    So...
+    
+    Would you still like to know how to use impress.js?
+    
+-->
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Tango</title>
+    
+	<meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
+    <meta name="author" content="Bartek Szopka" />
+
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <!--
+        
+        Impress.js doesn't depend on any external stylesheets. It adds all of the styles it needs for the
+        presentation to work.
+        
+        This style below contains styles only for demo presentation. Browse it to see how impress.js
+        classes are used to style presentation steps, or how to apply fallback styles, but I don't want
+        you to use them directly in your presentation.
+        
+        Be creative, build your own. We don't really want all impress.js presentations to look the same,
+        do we?
+        
+        When creating your own presentation get rid of this file. Start from scratch, it's fun!
+        
+    -->
+    <link href="https://cdn.antwerpen.be/acpaas_branding_scss/4.1.1/main.min.css" rel="stylesheet">
+    <link href="https://cdn.antwerpen.be/core_flexboxgrid_scss/1.0.1/flexboxgrid.min.css" rel="stylesheet">
+    <link href="css/impress-acpaas.css" rel="stylesheet" />
+    <link href="css/impress-common.css" rel="stylesheet" />
+    <link href="extras/highlight/styles/github-gist.css" rel="stylesheet">
+    
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+</head>
+
+<!--
+    
+    Body element is used by impress.js to set some useful class names, that will allow you to detect
+    the support and state of the presentation in CSS or other scripts.
+    
+    First very useful class name is `impress-not-supported`. This class means, that browser doesn't
+    support features required by impress.js, so you should apply some fallback styles in your CSS.
+    It's not necessary to add it manually on this element. If the script detects that browser is not
+    good enough it will add this class, but keeping it in HTML means that users without JavaScript
+    will also get fallback styles.
+    
+    When impress.js script detects that browser supports all required features, this class name will
+    be removed.
+    
+    The class name on body element also depends on currently active presentation step. More details about
+    it can be found later, when `hint` element is being described.
+    
+-->
+<body class="impress-not-supported">
+
+<!--
+    For example this fallback message is only visible when there is `impress-not-supported` class on body.
+-->
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<!--
+    
+    Now that's the core element used by impress.js.
+    
+    That's the wrapper for your presentation steps. In this element all the impress.js magic happens.
+    It doesn't have to be a `<div>`. Only `id` is important here as that's how the script find it.
+    
+    Often you don't need to use any attributes here, but for educational purposes I have used all of them below.
+
+    To change the duration of the transition between slides use `data-transition-duration="2000"` giving it
+    a number of ms. It defaults to 1000 (1s).
+    
+    When authoring impress.js presentations, you should target some screen size, which you can define here.
+    The default is 1024 x 768. You should write your CSS as if this is the screen size used for the
+    presentation. When you present your presentation on a screen (or browser window) of different size,
+    impress.js will automatically scale the presentation to fit the screen. The minimum and maximum limits
+    to this scaling can also be defined here.
+    
+    NOTE: I intend to change the defaults to target HD screens in 2021. So you may want to make a habit
+    of explicitly defining these attributes for now, to avoid any disruption when the defaults change.
+    
+    You can also control the perspective with `data-perspective="500"` giving it a number of pixels.
+    It defaults to 1000. You can set it to 0 if you don't want any 3D effects.
+    If you are willing to change this value make sure you understand how CSS perspective works:
+    https://developer.mozilla.org/en/CSS/perspective
+    
+-->
+<div id="impress"
+    data-transition-duration="1000"
+    
+    data-width="1024"
+    data-height="768"
+    data-max-scale="3"
+    data-min-scale="0"
+    data-perspective="1000">
+
+    <!--
+        
+        Here is where interesting thing start to happen.
+        
+        Each step of the presentation should be an element inside the `#impress` with a class name
+        of `step`. These step elements are positioned, rotated and scaled by impress.js, and
+        the 'camera' shows them on each step of the presentation.
+        
+        Positioning information is passed through data attributes.
+        
+        In the example below we only specify x and y position of the step element with `data-x="-1200"`
+        and `data-y="-1500"` attributes. This means that **the center** of the element (yes, the center)
+        will be positioned in point x = -1200px and y = -1500px of the presentation 'canvas'.
+        
+        It will not be rotated or scaled.
+        
+    -->
+    <div id="titel" class="step slide dark" data-x="-300" data-y="-500" data-scale="0.3">
+        <div class="wrap container-fluid" style="height: 100%;">
+            <div class="row middle-xs" style="height: 100%;">
+                <div class="col-xs-12">
+                    <h1 class="row center-xs" style="font-size: 6rem;">tango</h1>
+                    <h4 class="row center-xs">een introductie</h4>            
+                </div>
+            </div>
+        </div>
+        
+        <img src="img/acpaas-logo.svg" height="80" style="position: absolute; left: 50%; margin-left: -120px; bottom: 50px; border: none;">
+        <div class="notes">
+            Welkom bij Tango.
+            In deze presentatie leggen we uit wat Tango is, en hoe het jouw projecten kan versnellen.
+            Maar voor we een antwoord geven op de vraag "wat is tango?" starten we eerst met "waarom tango?".
+        </div>
+    </div>
+
+    <div id="waarom-1" class="step slide" data-x="100" data-y="-500" data-scale="0.3">
+        <h2 class="u-margin-bottom-lg">We bouwen veel "dossierapps"</h2>
+        <img src="img/dossierapp1.png" alt="Dossier app 1" style="width: 80%;">
+        <img src="img/dossierapp2.png" alt="Dossier app 2" style="width: 80%; position: relative; top: -50px; left: 75px;">
+        <img src="img/dossierapp3.png" alt="Dossier app 3" style="width: 80%; position: relative; top: -100px; left: 150px;">
+        
+        <div class="acpaas-logo"></div>
+        <div class="notes">
+            Digipolis wordt vaak gevraagd om "dossierapps", toepassingen voor dossierbeheer, aan te leveren.
+            Dit zijn toepassingen waar aanvragen binnenkomen, van burgers of medewerkers, 
+            en die vervolgens een backoffice verwerking kennen. Je ziet hier vaak dezelfde elementen terugkomen:
+            overzichtsschermen, detailschermen, historiek, bijlagen, ...
+        </div>
+    </div>
+
+    <div id="waarom-2" class="step slide" data-x="500" data-y="-500" data-scale="0.3">
+        <h2 class="u-margin-bottom-lg">Wat is een dossierapp?</h2>
+        <img src="img/dossierapp-reqs.png" alt="Dossier app beschrijving"
+             style="width: 100%; padding-left: 10%; padding-right: 10%; border: none;">
+
+        <div class="acpaas-logo"></div>
+        <div class="notes">
+            <p>
+                Staan we even stel bij de high-level requirements van zo een "dossierapp", dan zijn ze deze:
+                <ul>
+                    <li>een doorzoekbare, filterbare en exporteerbare lijst van dossiers</li>
+                    <li>een dossier aanmaken, bekijken, bewerken en goedkeuren, en aanverwante zaken als historiek, bijlagen en meldingen</li>
+                </ul>
+            </p>
+            <p>
+                Dit soort toepassingen bouwen we keer op keer, telkens een beetje anders maar toch heel gelijkaardig.
+                Om dit mogelijk te maken voorziet ACPaaS in heel wat engines: GDP, Workflow, Notification, ...    
+            </p>
+        </div>
+    </div>
+
+    <div id="waarom-3" class="step slide" data-x="900" data-y="-500" data-scale="0.3">
+        <h2 class="u-margin-bottom-lg">Wat kon beter</h2>
+        <div class="wrap container-fluid" style="height: 100%;">
+            <div class="row middle-xs center-xs" style="height: 70%; font-size: 100px;">
+                <div class="col-xs-3 center-xs"><span class="fa fa-eur"></span></div>
+                <div class="col-xs-4 center-xs"><span class="fa fa-clock-o"></span></div>
+                <div class="col-xs-3 center-xs"><span class="fa fa-check-circle-o"></span></div>
+            </div>
+        </div>
+
+        <div class="acpaas-logo"></div>
+        <div class="notes">
+            <p>
+                We merkten op dat bij het bouwen van dossierapps sommige zaken beter konden.
+                Allereerst namen ze vaak veel tijd om te bouwen, vele maanden voor relatief eenvoudige toepassingen,
+                ondanks een fully featured ACPaaS onderbouw en ACPaaS UI bovenbouw.    
+            </p>
+            <p>
+                Dit had allerlei oorzaken, maar belangrijk waren: het moeten opbouwen van kennis over de beschikbare API's,
+                het navigeren van de procedures om een nieuwe toepassing opgezet en ingeplugd te krijgen op ACPaaS,
+                en het vaak opnieuw moeten bouwen van features die reeds in andere toepassingen gebouwd zijn 
+                (maar dan lichtjes anders).
+            </p>
+            <p>
+                Omdat projecten in tijdsnood kwamen was het niet altijd even evident om alle kwaliteitsvinkjes gezet
+                te krijgen op het einde van het traject. Door de lange doorlooptijd droegen deze projecten ook vaak een hoge kost,
+                middelen die we liever zouden inzetten op innovatie dan op reproductie.    
+            </p>
+            <p>
+                We hadden een oplossing nodig om meer code te kunnen hergebruiken van de toepassingen voor dossierbeheer overheen de projecten...
+            </p>
+        </div>
+    </div>
+
+    <div id="tango" class="step" data-x="300" data-y="-970" data-scale="2" style="padding: 0; margin-top: -50px;">
+        <h1 style="font-size: 300px; line-height: 300px; text-align: center;">tango</h1>
+
+        <div class="notes">
+            Die oplossing is Tango, een starterkit voor het bouwen van dossierapps,
+            beschikbaar als starter repo's in de Digipolis git omgeving.
+        </div>
+    </div>
+
+    <div id="demo-app" class="step" data-x="300" data-y="1000" data-scale="2" data-rotate="-90">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-8">
+                    <img src="img/tngdemo-dossiers.png"
+                         alt="Demo app dossiers scherm"
+                         style="height: 450px;">
+                </div>
+                <div class="col-xs-4">
+                    <img src="img/tngdemo-dossier-mobile.png"
+                         alt="Demo app dossierdetail op smartphone"
+                         style="height: 450px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="notes">
+            <p>
+                Deze starterkit komt in de vorm van een werkende applicatie voor dossierbeheer,
+                waarin je aanvragen voor een betaalde opleiding kan aanmaken en bewerken.
+                De starterkit bestaat uit een responsive en accessible frontend
+                en een fully featured business API, en dient als het vertrekpunt om snel van de grond te geraken
+                met een volwaardige dossierbeheertoepassing.
+            </p>
+            <p>
+                De demotoepassing bevat volgende functionaliteiten:
+                <ol>
+                    <li>aanmelden als medewerker, met toegang afgeschermd via rollen</li>
+                    <li>dossiers zien, zoeken, aanmaken en bewerken</li>
+                    <li>bijlages toevoegen aan een dossier</li>
+                    <li>acties uitvoeren op een dossier, met of zonder de workflow engine</li>
+                    <li>meldingen ontvangen bij handelingen op het dossier</li>
+                </ol>
+            </p>
+            <p>
+                Daarnaast voorzien we ook een intakeprocedure voor nieuwe Tango-projecten,
+                en een technische bootstrapgids om ontwikkelaars vlot door een ontwikkeling met Tango te loodsen.
+            </p>
+        </div>
+    </div>
+
+    <div id="architecture-1" class="step" data-x="2500" data-y="1000" data-scale="2.6">
+        <img src="img/tango-architectuur.png" alt="Tango architectuur"
+             style="height: 680px; border: none; display: block; margin:auto;">
+
+        <div class="notes">
+            <p>
+                Tango is modulair opgebouwd bovenop ACPaaS, en out of the box conform aan de EA richtlijnen en best practices.
+                In deze tekening zie je de verdeling van werk tussen de Tango app en API starter kits.
+                De frontend is gebaseerd op ACPaaS UI voor Angular en de ACPaaS UI starter kit.
+                De backend is ontwikkeld in Node.js.
+            </p>
+            <p>
+                Zowel app als API zijn volledig aanpasbaar naar de noden van het project.
+                Gemeenschappelijke functionaliteit is ontsloten als widget- en API-packages,
+                zodat je nieuwe features en bugfixes eenvoudig als update kan binnenhalen in een bestaand Tango-project.
+            </p>
+            <p>
+                Laten we even inzoomen op de frontend...
+            </p>
+        </div>
+    </div>
+
+    <div id="widgets-smart-table" class="step" data-x="2000" data-y="-750">
+        <h2 class="u-margin-bottom-lg">Smart Table</h2>
+        <div class="u-margin-bottom-lg" style="position: relative; height: 400px;">
+            <img src="img/tngdemo-smart-table-mobile.png" alt="Smart Table op mobile" 
+                 style="position: absolute; top: 0; left: 0; height: 400px;">
+            <img src="img/tngdemo-smart-table.png" alt="Smart Table op desktop" 
+                 style="position: absolute; top: 50px; right: 0; height: 300px;">
+        </div>
+
+        <div class="notes">
+            <p>De Tango frontend maakt gebruik van apart gepubliceerde en configureerbare smart widgets.</p>
+            <p>
+                Het overzichtsscherm van dossiers bouwt verder op de Smart Table widget.
+                Deze voorziet een generieke UI van een tabel met filters, sortering, paginering, excel export en meer.
+                Als ontwikkelaar dien je enkel de configuratie en een data endpoint te voorzien.
+                Deze widget staat toe om krachtige overzichtsschermen te bouwen zonder boilerplate code.
+            </p>
+        </div>
+    </div>
+
+    <div id="widgets-dossier" class="step" data-x="3100" data-y="-750">
+        <h2 class="u-margin-bottom-lg">Dossier Editor &amp; Form Renderer</h2>
+        <div class="u-margin-bottom-lg" style="position: relative; height: 400px;">
+            <img src="img/tngdemo-dossier-view.png" alt="Dossier editor op desktop" 
+                 style="position: absolute; top: 0px; left: 0; height: 400px;">
+            <img src="img/tngdemo-dossier-edit-mobile.png" alt="Dossier editor op mobile"
+                 style="position: absolute; top: 0; right: 50px; height: 400px;">
+        </div>
+        
+        <div class="notes">
+            <p>
+                Om dossierdetails weer te geven en bewerken bouwen we verder op de form engine.
+                In de form composer ontwerpen we in wysiwyg-stijl één of meer formulieren voor weergave, aanmaken en bewerken.
+                Een generieke dossier editor widget verpakt deze formulieren en gaat ze verbinden 
+                met de achterliggende Tango API. Foutberichten uit de achterliggende API worden
+                automatisch teruggekoppeld naar het juiste veld zodat de gebruiker gerichte feedback krijgt.
+            </p>
+            <p>
+                Dit staat een intuïtief ontwerp van dossierdetails toe, waarbij de eindgebruiker zelf mee kan ontwerpen.
+                Sommige details van het formulier (zoals volgorde van velden, labels, extra informatie en
+                validatieregels) kunnen zelfs gewijzigd worden nadat de toepassing reeds live is, zonder code-aanpassingen.
+            </p>
+        </div>
+    </div>
+
+    <div id="widgets-history" class="step" data-x="4200" data-y="-750">
+        <h2 class="u-margin-bottom-lg">Historiek</h2>
+        <div class="u-margin-bottom-lg" style="position: relative; height: 400px;">
+            <img src="img/tngdemo-dossier-history.png" alt="Dossierhistoriek widget"
+                 style="position: absolute; top: 0; left: 0; height: 300px;">
+            <img src="img/tngdemo-dossier-history-filters.png" alt="Dossierhistoriek filterpaneel"
+                 style="position: absolute; top: 0; right: 0; height: 300px;">
+        </div>
+
+        <div class="notes">
+            <p>
+                Dossierhistoriek is ontsloten via een generieke maar aanpasbare historiekwidget.
+                De historiek kan gefilterd worden volgens de mogelijkheden van de GDPng Dossierhistoriek API, 
+                en de weergave van de historieklijnen kan aangepast worden naar de noden van de toepassing.
+            </p>
+            <p>
+                Een aanpasbaar detailpaneel kan toelichten wat er exact veranderde.
+                Out of the box toont dit de statusovergangen.
+            </p>
+        </div>
+    </div>
+
+    <div id="widgets-bijlagen" class="step" data-x="5300" data-y="-750">
+        <h2 class="u-margin-bottom-lg">Bijlagen</h2>
+        <div class="u-margin-bottom-lg" style="position: relative; height: 400px;">
+            <img src="img/tngdemo-dossier-bijlagen.png" alt="Dossierhistoriek widget"
+                 style="position: absolute; top: 0; left: 0; height: 300px;">
+            <img src="img/tngdemo-dossier-bijlagen-mobile.png" alt="Dossierhistoriek filterpaneel"
+                 style="position: absolute; top: 0; right: 0; height: 300px;">
+        </div>
+
+        <div class="notes">
+            <p>
+                De bijlagenfunctionaliteit van GDPng is ontsloten als bijlagenschermen in het dossier.
+                De UI hiervan kan volledig aangepast worden, en eventuele extra velden gelinkt aan elke bijlage
+                kunnen bewaard worden in het dossier en wijzigingen hiervan verschijnen in de dossierhistoriek.
+            </p>
+        </div>
+    </div>
+
+    <div id="acpaas" class="step" data-x="4700" data-y="1000" data-rotate="90" data-scale="2">
+        <img src="img/acpaas.png" alt="ACPaaS Core diagram"
+             style="width: 1020px; position: relative; left: -100px; border: none; display: block; margin: auto;">
+
+        <div class="notes">
+            <p>
+                Onder de Tango architectuur zit ACPaaS. We maken onder andere gebruik van:
+                <ul>
+                    <li>GDPng voor het bijhouden van dossiers en dossierbijlagen (duh)</li>
+                    <li>Form engine voor dossierdetailschermen</li>
+                    <li>Notification engine voor het uitsturen van berichten bij dossierwijzigingen</li>
+                    <li>M-profiel voor het mappen van usernames op friendly names</li>
+                    <li>Authz voor het valideren van rollen en permissies</li>
+                </ul>
+            </p>
+            <p>
+                Een typische vraag bij gebruik van Tango is: "is er een speciale Tango tenant voor Form engine of GDPng?".
+                Het antwoord is nee, omdat een Tango applicatie of API een standaardoplossing is op ACPaaS, gebouwd met Angular en Node,
+                maar dan gewoon één met een eigenaardige origin story. Alle best practices voor standaardoplossingen kan je dus toepassen.
+                Dit wil zeggen dat je zelf kan kiezen welke de meest geschikte GDPng en Form engine tenant voor je project zal zijn.
+            </p>
+        </div>
+    </div>
+
+    <div id="architecture-2" class="step" data-x="2500" data-y="1000" data-scale="2.6">
+        <img src="img/tango-architectuur.png" alt="Tango architectuur" style="height: 680px; border: none; display: block; margin: auto;">
+
+        <div class="notes">
+            <p>
+                Tussen de widgets en de ACPaaS API's is waar het hart van de toepassing leeft,
+                de businesslogica. De Tango API starter kit is net zoals de frontend modulair opgebouwd,
+                uit API packages.
+            </p>
+            <p>
+                De packages koppelen aan als puzzelstukken, maar zijn ook afzonderlijk inzetbaar.
+                Via configuratieparameters en hook functies kan het gedrag van de packages volledig bijgestuurd worden.
+                Aangezien de top-level routing in de API starterkit repo zit, en niet in een package,
+                kan je de API endpoints volledig aanpassen en uitbreiden met de specifieke businesslogica van jouw project.
+            </p>
+            <p>
+                Laten we even deze tussenliggende lagen dieper verkennen...
+            </p>
+        </div>
+    </div>
+
+    <div id="detail-smart-table" class="step" data-x="100" data-y="2800">
+        <pre style="width: 700px; margin-left: 50px;"><code class="js">
+    app.use(createSmartTableRouter({
+        gdpDossierApi: { /* ... */ },
+        gdpDossierTypeIds: [ "..." ],
+        tableConfig: {
+            columns: [{
+                label: 'Opleiding',
+                key: 'opleiding_name',
+                type: 'text',
+                gdpPath: 'dataObject/jsonData/opleiding/naam',
+            }, /* ... */ ]),
+            filters: [{
+                id: "generic",
+                display: "generic",
+                label: "Zoek een opleidingsaanvraag",
+                type: "input",
+                fields: ["aanvrager_name", "opleiding_name", "locatie"],
+            }, /* ... */],
+            options: {
+                defaultSortOrder: {
+                    key: "created_at",
+                    order: "desc",
+                }, /* ... */
+            }
+        },
+        hooks: { /* ... */ }
+    })
+        </code></pre>
+        <pre style="position: absolute; right: 50px; bottom: 50px; width: 400px;"><code class="html">
+    &lt;aui-smart-table 
+        apiUrl="/api/dossiers/table/search" 
+        (rowClicked)="onRowSelect($event)"&gt;
+    &lt;/aui-smart-table&gt;
+        </code></pre>
+
+        <div class="notes">
+            <p>
+                De GDPng Smart Table connector is een BFF package die API routes voorziet om de Smart Table te voeden
+                met dossiergegevens uit GDPng. Als ontwikkelaar voorzie je enkel welke dossiertypes je wil ontsluiten,
+                en welke kolommen en filters ervan moeten ontsloten worden. De connector en widget handelen de details af
+                van de weergave van de lijst van dossiers.
+            </p>
+            <p>
+                Via custom column components en hook functies kan de weergave van de smart table bijgestuurd worden.
+                Out of the box is er echter erg weinig code nodig om de smart table weer te geven.
+                De code die je hier ziet volstaat.
+            </p>
+        </div>
+    </div>
+
+    <div id="detail-dossier-form" class="step" data-x="1200" data-y="2800">
+        <img src="img/package-dossier-and-form.png" alt="Dossier & Form package architectuur"
+             style="height: 500px; border: none; display: block; margin: auto;">
+
+        <div class="notes">
+            <p>
+                De dossier-and-form package vormt de basis van de Tango API.
+                Deze maakt de verbinding tussen het formulier uit de UI en de GDPng Dossier API.
+            </p>
+            <p>
+                Via mappingregels bepaalt de ontwikkelaar hoe de velden uit het formulier verbinden op velden uit het dossiertype.
+                Met behulp van hook-functies kan dit gedrag volledig gewijzigd worden, en custom validatie toegevoegd.
+                Door de generieke digipolis/authz package worden de routes afgeschermd met de nodige permissies.
+            </p>
+            <p>
+                In de README van deze package staat een cookbook om allerlei gangbare scenario's op te lossen,
+                van het genereren van een custom dossiernummer tot het inpluggen op een ander dossiersysteem dan GDPng.
+            </p>
+        </div>
+    </div>
+
+    <div id="detail-workflow" class="step" data-x="2200" data-y="2800">
+        <img src="img/package-workflow.png" alt="Dossier workflow package architectuur"
+             style="height: 500px; border: none; display: block; margin: auto;">
+
+        <div class="notes">
+            <p>
+                Wijzigingen van velden op het dossier worden afgehandeld door een PATCH route op de dossier-and-form package.
+                Echter, vaak hebben dossiers andere soorten van wijzigingen nodig, zoals statusveranderingen,
+                goedkeuringen, of complexere flows waarbij gebruikersinteracties vereist zijn.
+                Deze wijzigingen kunnen manueel getriggerd worden door de gebruiker,
+                of gebeuren automatisch in respons op dossierwijzigingen.
+            </p>
+            <p>
+                Dit soort van wijzigingen die niet netjes op REST operaties mappen maken we mogelijk via de
+                dossier-workflow package. Deze ontsluit een generiek concept van acties.
+                Acties van het kortlopende type, zoals bvb een statuswijziging met validatiecheck, worden synchroon uitgevoerd.
+                Ook langlopende acties zijn mogelijk, waar de gebruiker niet op zal wachten en die dus asynchroon uitgevoerd worden,
+                eventueel via de Workflow engine.
+            </p>
+            <p>
+                In de huidige versie van Tango zijn beide actietypes mogelijk, maar is enkel nog maar een voorbeeldactie
+                geimplementeerd van het kortlopende type, met name de change-status operatie. Dit is door de ontwikkelaar
+                echter uit te breiden met alle nodige acties, zowel kortlopend als langlopend.
+            </p>
+        </div>
+    </div>
+
+    <div id="detail-attachments" class="step" data-x="3200" data-y="2800">
+        <img src="img/package-attachments.png" alt="Dossier attachments package architectuur"
+             style="height: 500px; border: none; display: block; margin: auto;">
+
+        <div class="notes">
+            <p>
+                Bijlagen op het dossier beheren en ontsluiten als een aanpasbare API wordt afgedekt door de dossier-attachments package.
+                Deze ontsluit alle nodige routes voor het beheren van bijlagen, 
+                en bevat een actie om bijlages ingediend vanuit het initiele formulier
+                automatisch te verplaatsen van de voorlopige Digital Assets opslag verbonden aan het formulier
+                naar de finale locatie in de GDPng Assets API.
+            </p>
+            <p>
+                Deze package maakt het ook mogelijk om extra metadata van een bijlage te bewaren in het dossier,
+                zoals een opmerkingenveld, waarvan de wijzigingen zullen opduiken in de dossierhistoriek.
+            </p>
+        </div>
+    </div>
+
+    <div id="detail-notifications" class="step" data-x="4200" data-y="2800">
+        <img src="img/package-notification.png" alt="Dossier notifications package architectuur"
+             style="height: 500px; border: none; display: block; margin: auto;">
+
+        <div class="notes">
+            <p>
+                Voor het monitoren van dossiers en het automatisch uitsturen van meldingen voor wijzigingen
+                hebben we de dossier-notifications package.
+            </p>
+            <p>
+                Centraal is de DossierWatcher die dossiers observeert om wijzigingen te detecteren.
+                Een TaskWatcher om taken van de GDPng Process API te observeren is voorzien in de architectuur,
+                maar is (nog) niet gerealiseerd. 
+            </p>
+            <p>
+                DossierWatcher bevraagt de GDPng Dossier API om wijzigingen van dossiers te ontdekken,
+                zodat deze altijd geobserveerd worden, zelfs wanneer het notifications-systeem tijdelijk onbeschikbaar 
+                was tijdens de wijziging. Via state tracking in MongoDB verzekeren we dat wijzigingen slechts eenmalig 
+                gedetecteerd worden en geen dubbele of verouderde notifications zullen triggeren.
+                Een jobssysteem gebaseerd op AgendaJS en MongoDB zorgt dat de afhandeling van dossierwijzigingen
+                automatische retry-pogingen doet bij onbeschikbaarheid van de onderliggende API's en dat deze oplossing
+                vlot schaalt naar hoge volumes door extra containers op te spinnen.
+            </p>
+            <p>
+                De NotificationSender maakt een abstractie over de onderliggende notification engine,
+                zodat de ontwikkelaar zich kan focussen op de inhoud van notifications in plaats van de mechaniek
+                van hoe je de Notification engine aan moet roepen.
+            </p>
+            <p>
+                Out of the box is voorzien in een generieke DossierNotifications oplossing die emails uitstuurt bij creatie en wijziging van een dossier.
+                Het is mogelijk om deze mails inhoudelijk te wijzigen via templates,
+                en om in plaats van mails andere notifications uit te sturen, zoals SMS of in-app.
+                Een generieke notifications smart widget staat toe om met minimale code in-app notifications 
+                te integreren in de UI voor die toepassingen waar dit gewenst is.
+            </p>
+            <p>
+                Deze oplossing is volledig losstaand inzetbaar van de rest van Tango,
+                en kan dan ook ingeplugd worden op andere GDPng toepassingen.
+            </p>
+        </div>
+    </div>
+
+    <div id="detail-privacy" class="step" data-x="5200" data-y="2800">
+        <img src="img/package-privacy.png" alt="Dossier privacy package architectuur"
+             style="height: 500px; border: none; display: block; margin: auto;">
+
+        <div class="notes">
+            <p>
+                Aan GDPR verplichting zoals het aantoonbaar verwijderen van persoonlijke gegevens voldoen
+                is vaak geen evidentie. Om die reden voorziet de Tango basis in een volwaardige GDPR oplossing
+                voor het verwijderen of anonimiseren van dossiers.
+            </p>
+            <p>
+                Een beheerder (afgeschermd via de gepaste rol) krijgt een overzichtsscherm te zien van dossiers
+                die aan de voorwaarden voldoen om geanonimiseerd of verwijderd te worden (bvb ouder dan 3 maanden).
+                Als Tango-ontwikkelaar kies je zelf welke dossiers dit zijn, hoe je de gegevens daarvan toont,
+                en of je de verwijderings- of anonimiseringsfunctie aan gaat bieden als een knop, of allebei.
+            </p>
+            <p>
+                Wanneer de beheerder op de knop klikt wordt in de achtergrond een job gestart die deze dossiers 
+                zal verwerken als een langlopende operatie. Elk dossier wordt een aparte job binnen het 
+                AgendaJS jobsysteem. Op deze manier garanderen we dat elk dossier aantoonbaar verwijderd of geanonimiseerd
+                kan worden. Een Jobs UI toont de voortgang van deze operatie.
+            </p>
+            <p>
+                Als ontwikkelaar bepaal je zelf via een hook functie exact wat anonimisering wil zeggen:
+                welke velden moeten aangepast worden, en welke waarden schrijf je daar naartoe, en moeten bijlagen
+                nu wel of niet verwijderd worden? Kies je voor verwijdering dan is dit standaard een hard delete,
+                maar ook een soft delete is mogelijk via een hook functie.
+            </p>
+        </div>
+    </div>
+
+    <div id="next-steps" class="step" data-x="2500" data-y="3600" data-z="300" data-rotate-x="-60" data-scale="2">
+        <div class="wrap container-fluid" style="height: 100%;">
+            <h2 class="row center-xs u-margin-bottom-lg">Go Tango</h2>
+            <div class="row middle-xs center-xs" style="height: 80%; font-size: 70px;">
+                <div class="col-xs-3 center-xs"><span class="fa fa-sign-in"></span></div>
+                <div class="col-xs-3 center-xs"><span class="fa fa-book"></span></div>
+                <div class="col-xs-3 center-xs"><span class="fa fa-rocket"></span></div>
+                <div class="col-xs-3 center-xs"><span class="fa fa-slack"></span></div>
+            </div>
+        </div>
+
+        <div class="notes">
+            <p>
+                Wil je starten met Tango, dan begin je steeds met een intake.
+                Tijdens de intake zal een Enterprise Architect jouw use case matchen tegen de Tango-functionaliteit,
+                en je gidsen door het gebruik van Tango.
+                Vraag een intake via de contactinformatie op het ACPaaS Portaal.
+            </p>
+            <p>
+                Na de intake ga je als businessarchitect door de documentatie op het ACPaaS Portaal,
+                op de ACPaaS Wiki, en in de readme's van de Tango git repo's. De kennis over de mogelijkheden
+                van de Tango bouwblokken gebruik je dan om een oplossing te schetsen die verder bouwt bovenop de basis
+                van Tango, in plaats van ervan af te wijken, zodat deze snel kan gebouwd worden.
+            </p>
+            <p>
+                Als ontwikkelaar start je met de bootstrapgids uit de Tango app starter kit git repo.
+                Deze bevat het stappenplan hoe je een Tango app en API ontwikkelt en uitrolt.
+            </p>
+            <p>
+                Loop je vast met Tango, dan kan je steeds terecht met je vragen op het #tango kanaal op Digipolis Slack,
+                of kan je ze sturen naar de contactpersonen uit het ACPaaS Portaal.
+            </p>
+        </div>
+    </div>
+
+    <!--
+        
+        So to summarize of all the possible attributes used to position presentation steps, we have:
+        
+        * `data-x`, `data-y`, `data-z` - they define the position of **the center** of step element on
+            the canvas in pixels; their default value is 0;
+        * `data-rotate-x`, `data-rotate-y`, 'data-rotate-z`, `data-rotate` - they define the rotation of
+            the element around given axis in degrees; their default value is 0; `data-rotate` and `data-rotate-z`
+            are exactly the same;
+        * `data-scale` - defines the scale of step element; default value is 1
+        
+        These values are used by impress.js in CSS transformation functions, so for more information consult
+        CSS transfrom docs: https://developer.mozilla.org/en/CSS/transform
+        
+    -->
+    <div id="overview" class="step" data-x="2500" data-y="1400" data-z="0" data-scale="10">
+        <div class="notes">
+            <p>
+                Dit was Tango. Hopelijk ben je ook begeesterd door deze oplossing.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<!--
+    This is a UI plugin. You can read more about plugins in src/plugins/README.md.
+    For now, I'll just tell you that this adds some graphical controls to navigate the
+    presentation. In the CSS file you can style them as you want. We've put them bottom right.
+-->
+<div id="impress-toolbar"></div>
+
+<!--
+    
+    Hint is not related to impress.js in any way.
+    
+    But it can show you how to use impress.js features in creative way.
+    
+    When the presentation step is shown (selected) its element gets the class of "active" and the body element
+    gets the class based on active step id `impress-on-ID` (where ID is the step's id)... It may not be
+    so clear because of all these "ids" in previous sentence, so for example when the first step (the one with
+    the id of `titel`) is active, body element gets a class of `impress-on-titel`.
+    
+    This class is used by this hint below. Check CSS file to see how it's shown with delayed CSS animation when
+    the first step of presentation is visible for a couple of seconds.
+    
+    ...
+    
+    And when it comes to this piece of JavaScript below ... kids, don't do this at home ;)
+    It's just a quick and dirty workaround to get different hint text for touch devices.
+    In a real world it should be at least placed in separate JS file ... and the touch content should be
+    probably just hidden somewhere in HTML - not hard-coded in the script.
+    
+    Just sayin' ;)
+    
+-->
+<div id="hint" class="hint" onclick="onHintClick()">
+    <p>Gebruik de spatiebalk of pijltjestoetsen om te navigeren. <br/>
+       Druk 'P' voor presentatormodus.</p>
+</div>
+<script>
+if ("ontouchstart" in document.documentElement) { 
+    document.querySelector(".hint").innerHTML = "<p>Veeg links of rechts om te navigeren</p>";
+}
+function onHintClick() {
+    document.getElementById("hint").classList.add("hidden");
+}
+</script>
+
+<!--
+    add shortcuts to jump to slides
+-->
+
+<script>
+    document.addEventListener( "impress:init", function( event ) {
+        let api = event.detail.api;
+        let gc = api.lib.gc;
+        gc.addEventListener( document, "keydown", function( event ) {
+            switch (event.keyCode) {
+                case 69: // E
+                    api.goto("next-steps");
+                    break;
+                case 79: // O
+                    api.goto("overview");
+                    break;
+            }
+        }, false);
+    });
+
+    impress().init();
+</script>
+
+<!--
+    
+    Last, but not least.
+    
+    To make all described above really work, you need to include impress.js in the page.
+    I strongly encourage to minify it first.
+    
+    In here I just include full source of the script to make it more readable.
+    
+    You also need to call a `impress().init()` function to initialize impress.js presentation.
+    And you should do it in the end of your document. Not only because it's a good practice, but also
+    because it should be done when the whole document is ready.
+    Of course you can wrap it in any kind of "DOM ready" event, but I was too lazy to do so ;)
+    
+-->
+<script src="js/impress.js"></script>
+<script>impress().init();</script>
+<script src="extras/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<!--
+    
+    The `impress()` function also gives you access to the API that controls the presentation.
+    
+    Just store the result of the call:
+    
+        var api = impress();
+    
+    and you will get three functions you can call:
+    
+        `api.init()` - initializes the presentation,
+        `api.next()` - moves to next step of the presentation,
+        `api.prev()` - moves to previous step of the presentation,
+        `api.goto( stepIndex | stepElementId | stepElement, [duration] )` - moves the presentation to the step given by its index number
+                id or the DOM element; second parameter can be used to define duration of the transition in ms,
+                but it's optional - if not provided default transition duration for the presentation will be used.
+    
+    You can also simply call `impress()` again to get the API, so `impress().next()` is also allowed.
+    Don't worry, it wont initialize the presentation again.
+    
+    For some example uses of this API check the last part of the source of impress.js where the API
+    is used in event handlers.
+    
+-->
+
+</body>
+</html>
+
+<!--
+    
+    Now you know more or less everything you need to build your first impress.js presentation, but before
+    you start...
+    
+    Oh, you've already cloned the code from GitHub?
+    
+    You have it open in text editor?
+    
+    Stop right there!
+    
+    That's not how you create awesome presentations. This is only a code. Implementation of the idea that
+    first needs to grow in your mind.
+    
+    So if you want to build great presentation take a pencil and piece of paper. And turn off the computer.
+    
+    Sketch, draw and write. Brainstorm your ideas on a paper. Try to build a mind-map of what you'd like
+    to present. It will get you closer and closer to the layout you'll build later with impress.js.
+    
+    Get back to the code only when you have your presentation ready on a paper. It doesn't make sense to do
+    it earlier, because you'll only waste your time fighting with positioning of useless points.
+    
+    If you think I'm crazy, please put your hands on a book called "Presentation Zen". It's all about 
+    creating awesome and engaging presentations.
+    
+    Think about it. 'Cause impress.js may not help you, if you have nothing interesting to say.
+    
+-->
+
+<!--
+    
+    Are you still reading this?
+    
+    For real?
+    
+    I'm impressed! Feel free to let me know that you got that far (I'm @bartaz on Twitter), 'cause I'd like
+    to congratulate you personally :)
+    
+    But you don't have to do it now. Take my advice and take some time off. Make yourself a cup of coffee, tea,
+    or anything you like to drink. And raise a glass for me ;)
+    
+    Cheers!
+    
+-->
+
