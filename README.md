@@ -8,7 +8,7 @@ Bekijk [DOCUMENTATION.md](DOCUMENTATION.md) en de code van [index.html](public/i
 De presentatie openen:
 
 ```sh
-npx http-server public
+npx http-server docs
 ```
 
 Browse naar [localhost:8080](http://localhost:8080)
